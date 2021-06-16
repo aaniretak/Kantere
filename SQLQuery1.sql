@@ -11,7 +11,7 @@
  iss_auth varchar(30),
  date_of_birth date,
  primary key(nfc_id),
- check (doc_type in ('Ταυτότητα','Διαβατήριο'))
+ check (doc_type in ('Ξ¤Ξ±Ο…Ο„ΟΟ„Ξ·Ο„Ξ±','Ξ”ΞΉΞ±Ξ²Ξ±Ο„Ξ®ΟΞΉΞΏ'))
  );
 
  create table email(
@@ -29,17 +29,17 @@
  );
 
  create table room(
- room_id int, /*φτιαξε τον τυπο ωστε τα πρωτα γραμματα να υπονοουν τον τυπο*/
+ room_id int, /*Ο†Ο„ΞΉΞ±ΞΎΞµ Ο„ΞΏΞ½ Ο„Ο…Ο€ΞΏ Ο‰ΟƒΟ„Ξµ Ο„Ξ± Ο€ΟΟ‰Ο„Ξ± Ξ³ΟΞ±ΞΌΞΌΞ±Ο„Ξ± Ξ½Ξ± Ο…Ο€ΞΏΞ½ΞΏΞΏΟ…Ξ½ Ο„ΞΏΞ½ Ο„Ο…Ο€ΞΏ*/
  num_of_beds numeric(1,0),
  room_name varchar(19),
  room_description varchar(100),
  primary key(room_id),
- check (room_name in ('Δωμάτιο','Ανελκυστήρας','Διάδρομος','Εστιατόριο','Μπαρ','Αίθουσα Συνεδρίασης','Γυμναστήριο','Σάουνα','Κομμωτήριο'))
+ check (room_name in ('Ξ”Ο‰ΞΌΞ¬Ο„ΞΉΞΏ','Ξ‘Ξ½ΞµΞ»ΞΊΟ…ΟƒΟ„Ξ®ΟΞ±Ο‚','Ξ”ΞΉΞ¬Ξ΄ΟΞΏΞΌΞΏΟ‚','Ξ•ΟƒΟ„ΞΉΞ±Ο„ΟΟΞΉΞΏ','ΞΟ€Ξ±Ο','Ξ‘Ξ―ΞΈΞΏΟ…ΟƒΞ± Ξ£Ο…Ξ½ΞµΞ΄ΟΞ―Ξ±ΟƒΞ·Ο‚','Ξ“Ο…ΞΌΞ½Ξ±ΟƒΟ„Ξ®ΟΞΉΞΏ','Ξ£Ξ¬ΞΏΟ…Ξ½Ξ±','ΞΞΏΞΌΞΌΟ‰Ο„Ξ®ΟΞΉΞΏ'))
  );
 
- create table services_av(
+ create table serv(
  service_id int,
- service_type numeric(1,0), /* 0 αν ΔΕΝ απαιτεί εγγραφή, 1 αλλιώς */
+ service_type numeric(1,0), /* 0 Ξ±Ξ½ Ξ”Ξ•Ξ Ξ±Ο€Ξ±ΞΉΟ„ΞµΞ― ΞµΞ³Ξ³ΟΞ±Ο†Ξ®, 1 Ξ±Ξ»Ξ»ΞΉΟΟ‚ */
  service_description varchar(100),
  primary key (service_id)
  );
@@ -58,7 +58,7 @@
  service_id int,
  registration_time smalldatetime,
  foreign key (nfc_id) references customer(nfc_id),
- foreign key (room_id) references room(room_id)
+ foreign key (service_id) references services_av(service_id)
  );
 
  create table visit(
@@ -82,7 +82,7 @@
  charging_time smalldatetime,
  nfc_id int,
  service_id int,
- serv_desc varchar(100),
+ charge_description varchar(100),
  charge_amount int,
  primary key(charging_time),
  foreign key (nfc_id) references customer(nfc_id),
