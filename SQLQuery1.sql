@@ -1,6 +1,6 @@
- create database hotel;
+ create database hotelCalifornia;
 
- use hotel;
+ use hotelCalifornia;
 
  create table customer(
  nfc_id int,
