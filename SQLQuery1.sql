@@ -1,4 +1,4 @@
- create database hotelCalifornia;
+create database hotelCalifornia;
 
  use hotelCalifornia;
 
@@ -18,18 +18,18 @@
  nfc_id int,
  mail varchar(250),
  primary key(mail),
- foreign key (nfc_id) references customer(nfc_id)
+ foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade
  );
  
  create table phone(
  nfc_id int,
  phone_num tinyint,
  primary key(phone_num),
- foreign key (nfc_id) references customer(nfc_id)
+ foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade
  );
 
  create table room(
- room_id int, /*φτιαξε τον τυπο ωστε τα πρωτα γραμματα να υπονοουν τον τυπο*/
+ room_id char(6), 
  num_of_beds numeric(1,0),
  room_name varchar(19),
  room_description varchar(100),
@@ -46,36 +46,35 @@
 
  create table access(
  nfc_id int,
- room_id int,
+ room_id char(6),
  start_time smalldatetime not null,
  finish_time smalldatetime not null,
- foreign key (nfc_id) references customer(nfc_id),
- foreign key (room_id) references room(room_id)
+ foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade,
+ foreign key (room_id) references room(room_id) on update cascade on delete cascade
  );
 
  create table registered(
  nfc_id int,
  service_id int,
  registration_time smalldatetime,
- foreign key (nfc_id) references customer(nfc_id),
- foreign key (service_id) references serv(service_id)
+ foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade,
+ foreign key (service_id) references serv(service_id) on update cascade on delete cascade
  );
 
  create table visit(
  nfc_id int,
- room_id int,
+ room_id char(6),
  entrance_time smalldatetime not null,
  exit_time smalldatetime not null,
- foreign key (nfc_id) references customer(nfc_id),
- foreign key (room_id) references room(room_id)
+ foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade,
+ foreign key (room_id) references room(room_id) on update cascade on delete cascade
  );
 
-
  create table provided(
- room_id int,
+ room_id char(6),
  service_id int,
- foreign key (service_id) references serv(service_id),
- foreign key (room_id) references room(room_id)
+ foreign key (service_id) references serv(service_id) on update cascade on delete cascade,
+ foreign key (room_id) references room(room_id) on update cascade on delete cascade
  );
 
  create table service_charge(
@@ -85,6 +84,6 @@
  charge_description varchar(100),
  charge_amount int,
  primary key(charging_time),
- foreign key (nfc_id) references customer(nfc_id),
- foreign key (service_id) references serv(service_id)
+ foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade,
+ foreign key (service_id) references serv(service_id) on update cascade on delete cascade
  );
