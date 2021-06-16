@@ -58,7 +58,7 @@
  service_id int,
  registration_time smalldatetime,
  foreign key (nfc_id) references customer(nfc_id),
- foreign key (service_id) references services_av(service_id)
+ foreign key (service_id) references serv(service_id)
  );
 
  create table visit(
@@ -74,7 +74,7 @@
  create table provided(
  room_id int,
  service_id int,
- foreign key (service_id) references services_av(service_id),
+ foreign key (service_id) references serv(service_id),
  foreign key (room_id) references room(room_id)
  );
 
@@ -86,5 +86,5 @@
  charge_amount int,
  primary key(charging_time),
  foreign key (nfc_id) references customer(nfc_id),
- foreign key (service_id) references services_av(service_id)
+ foreign key (service_id) references serv(service_id)
  );
