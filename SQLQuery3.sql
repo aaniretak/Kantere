@@ -10,3 +10,6 @@ on serv(service_type)
 
 create index charge_ind
 on service_charge(charge_amount)
+
+create index nfc_id_ind
+on customer(nfc_id)
