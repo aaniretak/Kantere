@@ -11,7 +11,7 @@
  iss_auth varchar(30),
  date_of_birth date,
  primary key(nfc_id),
- check (doc_type in ('Ταυτότητα','Διαβατήριο'))
+ check (doc_type in ('Ξ¤Ξ±Ο…Ο„ΟΟ„Ξ·Ο„Ξ±','Ξ”ΞΉΞ±Ξ²Ξ±Ο„Ξ®ΟΞΉΞΏ'))
  );
 
  create table email(
@@ -34,12 +34,12 @@
  room_name varchar(20),
  room_description varchar(100),
  primary key(room_id),
- check (room_name in ('Δωμάτιο','Ανελκυστήρας','Διάδρομος','Εστιατόριο','Μπαρ','Αίθουσα Συνεδριάσεων','Γυμναστήριο','Σάουνα','Κομμωτήριο'))
+ check (room_name in ('Ξ”Ο‰ΞΌΞ¬Ο„ΞΉΞΏ','Ξ‘Ξ½ΞµΞ»ΞΊΟ…ΟƒΟ„Ξ®ΟΞ±Ο‚','Ξ”ΞΉΞ¬Ξ΄ΟΞΏΞΌΞΏΟ‚','Ξ•ΟƒΟ„ΞΉΞ±Ο„ΟΟΞΉΞΏ','ΞΟ€Ξ±Ο','Ξ‘Ξ―ΞΈΞΏΟ…ΟƒΞ± Ξ£Ο…Ξ½ΞµΞ΄ΟΞΉΞ¬ΟƒΞµΟ‰Ξ½','Ξ“Ο…ΞΌΞ½Ξ±ΟƒΟ„Ξ®ΟΞΉΞΏ','Ξ£Ξ¬ΞΏΟ…Ξ½Ξ±','ΞΞΏΞΌΞΌΟ‰Ο„Ξ®ΟΞΉΞΏ'))
  );
  
  create table serv(
- service_id char(1), /* πρωτο γραμμα: τυπος χωρου */
- service_type numeric(1,0), /* 0 αν ΔΕΝ απαιτεί εγγραφή, 1 αλλιώς */
+ service_id char(1),/* Ο€ΟΟ‰Ο„ΞΏ Ξ³ΟΞ±ΞΌΞΌΞ±: Ο„Ο…Ο€ΞΏΟ‚ Ο‡Ο‰ΟΞΏΟ… */
+ service_type numeric(1,0), /* 0 Ξ±Ξ½ Ξ”Ξ•Ξ Ξ±Ο€Ξ±ΞΉΟ„ΞµΞ― ΞµΞ³Ξ³ΟΞ±Ο†Ξ®, 1 Ξ±Ξ»Ξ»ΞΉΟΟ‚ */
  service_description varchar(100),
  primary key (service_id)
  );
