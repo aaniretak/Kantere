@@ -38,7 +38,7 @@
  );
  
  create table serv(
- service_id char(1),/* πρωτο γραμμα: τυπος χωρου */
+ service_id char(1), /* πρωτο γραμμα: τυπος χωρου */
  service_type numeric(1,0), /* 0 αν ΔΕΝ απαιτεί εγγραφή, 1 αλλιώς */
  service_description varchar(100),
  primary key (service_id)
@@ -83,7 +83,7 @@
  service_id char(1),
  charge_description varchar(100),
  charge_amount numeric(12,2),
- primary key(charging_time),
+ primary key(charging_time,nfc_id,service_id),
  foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade,
  foreign key (service_id) references serv(service_id) on update cascade on delete cascade
  );
