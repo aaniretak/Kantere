@@ -39,7 +39,7 @@ datepart(hour, entrance_time) <= 1 and datepart(hour, covid_exit) >= 23 and date
 with cust as
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
+where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as
 (select nfc_id, room_id
 from visit
@@ -58,7 +58,7 @@ order by count(vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
+where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as 
 (select nfc_id, room_id, entrance_time
 from visit
@@ -78,7 +78,7 @@ order by count(vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 41 or year(getdate()) - year(customer.date_of_birth) <= 60),
+where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
 vis as
 (select nfc_id, room_id, entrance_time
 from visit
@@ -97,7 +97,7 @@ order by count(vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 41 or year(getdate()) - year(customer.date_of_birth) <= 60),
+where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
 vis as 
 (select nfc_id, room_id, entrance_time
 from visit
@@ -157,7 +157,7 @@ order by count(vis.nfc_id) desc
 with cust as 
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
+where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as 
 (select nfc_id, room_id
 from visit
@@ -176,7 +176,7 @@ order by count(vis.nfc_id) desc
 with cust as 
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
+where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as 
 (select nfc_id, room_id
 from visit
@@ -196,7 +196,7 @@ order by count(vis.nfc_id) desc
 with cust as 
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 41 or year(getdate()) - year(customer.date_of_birth) <= 60),
+where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
 vis as 
 (select nfc_id, room_id, entrance_time
 from visit
@@ -215,7 +215,7 @@ order by count(vis.nfc_id) desc
 with cust as 
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 41 or year(getdate()) - year(customer.date_of_birth) <= 60),
+where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
 vis as 
 (select nfc_id, room_id, entrance_time
 from visit
@@ -276,7 +276,7 @@ order by count(vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer 
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
+where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as
 (select nfc_id, room_id
 from visit
@@ -293,7 +293,7 @@ order by count(distinct vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer 
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
+where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as
 (select nfc_id, room_id
 from visit
@@ -312,7 +312,7 @@ order by count(distinct vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer 
-where year(getdate()) - year(customer.date_of_birth) >= 41 or year(getdate()) - year(customer.date_of_birth) <= 60),
+where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
 vis as
 (select nfc_id, room_id
 from visit
@@ -330,7 +330,7 @@ order by count(distinct vis.nfc_id) desc
 with cust as
 (select nfc_id
 from customer 
-where year(getdate()) - year(customer.date_of_birth) >= 41 or year(getdate()) - year(customer.date_of_birth) <= 60),
+where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
 vis as
 (select nfc_id, room_id
 from visit
