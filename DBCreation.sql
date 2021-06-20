@@ -82,7 +82,7 @@
  nfc_id int,
  service_id char(1),
  charge_description varchar(100),
- charge_amount int,
+ charge_amount numeric(12,2),
  primary key(charging_time),
  foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade,
  foreign key (service_id) references serv(service_id) on update cascade on delete cascade
