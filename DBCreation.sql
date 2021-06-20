@@ -17,14 +17,14 @@
  create table email(
  nfc_id int,
  mail varchar(250),
- primary key(mail),
+ primary key(mail,nfc_id),
  foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade
  );
  
  create table phone(
  nfc_id int,
  phone_num bigint,
- primary key(phone_num),
+ primary key(phone_num,nfc_id),
  foreign key (nfc_id) references customer(nfc_id) on update cascade on delete cascade
  );
  
