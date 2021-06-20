@@ -1,14 +1,12 @@
-/*QUERIES*/
-
 use hotel;
 
-/*χώροι που επισκέφθηκε άτομο με covid*/
+/*Ο‡ΟΟΞΏΞΉ Ο€ΞΏΟ… ΞµΟ€ΞΉΟƒΞΊΞ­Ο†ΞΈΞ·ΞΊΞµ Ξ¬Ο„ΞΏΞΌΞΏ ΞΌΞµ covid*/
 select visit.room_id, entrance_time, exit_time
 from (visit inner join room on visit.room_id = room.room_id) 
 where visit.nfc_id = '12301';
 
 
-/*ποιοι μολύνθηκαν*/
+/*Ο€ΞΏΞΉΞΏΞΉ ΞΌΞΏΞ»ΟΞ½ΞΈΞ·ΞΊΞ±Ξ½*/
 with covid_room as
 (select visit.room_id, entrance_time as covid_entrance, exit_time as covid_exit
 from (visit inner join room on visit.room_id = room.room_id) 
@@ -33,9 +31,9 @@ datepart(hour, entrance_time) <= 1 and datepart(hour, covid_exit) >= 23 and date
 
 
 
-/*πιο πολυσύχναστοι χώροι ανά ηλικιακή ομάδα*/
+/*Ο€ΞΉΞΏ Ο€ΞΏΞ»Ο…ΟƒΟΟ‡Ξ½Ξ±ΟƒΟ„ΞΏΞΉ Ο‡ΟΟΞΏΞΉ Ξ±Ξ½Ξ¬ Ξ·Ξ»ΞΉΞΊΞΉΞ±ΞΊΞ® ΞΏΞΌΞ¬Ξ΄Ξ±*/
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*20-40*/
 
 with cust as
@@ -54,7 +52,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*20-40*/
 with cust as
 (select nfc_id
@@ -73,7 +71,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*41-60*/
 with cust as
 (select nfc_id
@@ -91,7 +89,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*41-60*/
 with cust as
 (select nfc_id
@@ -110,7 +108,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*61+*/
 with cust as
 (select nfc_id
@@ -128,7 +126,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*61+*/
 with cust as
 (select nfc_id
@@ -146,9 +144,9 @@ group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
-/*οι συχνότερα χρησιμοποιούμενες υπηρεσίες*/
+/*ΞΏΞΉ ΟƒΟ…Ο‡Ξ½ΟΟ„ΞµΟΞ± Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞΉΞΏΟΞΌΞµΞ½ΞµΟ‚ Ο…Ο€Ξ·ΟΞµΟƒΞ―ΞµΟ‚*/
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*20-40*/
 with cust as 
 (select nfc_id
@@ -167,7 +165,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*20-40*/
 with cust as 
 (select nfc_id
@@ -187,7 +185,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*41-60*/
 with cust as 
 (select nfc_id
@@ -206,7 +204,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*41-60*/
 with cust as 
 (select nfc_id
@@ -226,7 +224,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*61+*/
 with cust as 
 (select nfc_id
@@ -245,7 +243,7 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*61+*/
 with cust as 
 (select nfc_id
@@ -265,9 +263,9 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 
-/*οι υπηρεσίες που χρησιμοποιούνται από τους περισσότερους πελάτες*/
+/*ΞΏΞΉ Ο…Ο€Ξ·ΟΞµΟƒΞ―ΞµΟ‚ Ο€ΞΏΟ… Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞΉΞΏΟΞ½Ο„Ξ±ΞΉ Ξ±Ο€Ο Ο„ΞΏΟ…Ο‚ Ο€ΞµΟΞΉΟƒΟƒΟΟ„ΞµΟΞΏΟ…Ο‚ Ο€ΞµΞ»Ξ¬Ο„ΞµΟ‚*/
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*20-40*/
 with cust as
 (select nfc_id
@@ -284,7 +282,7 @@ inner join provided on provided.room_id = vis.room_id)
 group by service_id
 order by count(distinct vis.nfc_id) desc
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*20-40*/
 with cust as
 (select nfc_id
@@ -303,7 +301,7 @@ group by service_id
 order by count(distinct vis.nfc_id) desc
 
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*41-60*/
 with cust as
 (select nfc_id
@@ -321,7 +319,7 @@ group by service_id
 order by count(distinct vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*41-60*/
 with cust as
 (select nfc_id
@@ -340,7 +338,7 @@ group by service_id
 order by count(distinct vis.nfc_id) desc
 
 
-/*τον τελευταίο χρόνο*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ Ο‡ΟΟΞ½ΞΏ*/
 /*61+*/
 with cust as
 (select nfc_id
@@ -358,7 +356,7 @@ group by service_id
 order by count(distinct vis.nfc_id) desc
 
 
-/*τον τελευταίο μήνα*/
+/*Ο„ΞΏΞ½ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―ΞΏ ΞΌΞ®Ξ½Ξ±*/
 /*61+*/
 with cust as
 (select nfc_id
