@@ -39,7 +39,7 @@ datepart(hour, entrance_time) <= 1 and datepart(hour, covid_exit) >= 23 and date
 with cust as
 (select nfc_id
 from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 41),
+where year(getdate()) - year(customer.date_of_birth) >= 20 or year(getdate()) - year(customer.date_of_birth) <= 40),
 vis as
 (select nfc_id, room_id
 from visit
@@ -47,6 +47,7 @@ where year(visit.entrance_time) = year(getdate()) or
 (year(getdate()) - year(visit.entrance_time) = 1 and month(entrance_time) - month(getdate()) >= 0))
 select top 3 vis.room_id, count(vis.nfc_id) as total_visits_per_year
 from cust inner join vis on cust.nfc_id = vis.nfc_id
+where room_id not like 'X%'
 group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
@@ -66,6 +67,7 @@ or (month(getdate()) - month(visit.entrance_time) = 1 and year(getdate()) = year
 or year(getdate()) - year(visit.entrance_time) = 1 and month(getdate()) + month(visit.entrance_time) = 13 and day(getdate()) + day(visit.entrance_time) <= 30)
 select top 3 vis.room_id, count(vis.nfc_id) as total_visits_per_month
 from cust inner join vis on cust.nfc_id = vis.nfc_id 
+where room_id not like 'X%'
 group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
@@ -84,6 +86,7 @@ where year(visit.entrance_time) = year(getdate()) or
 (year(getdate()) - year(visit.entrance_time) = 1 and month(entrance_time) - month(getdate()) >= 0))
 select top 3 vis.room_id, count(vis.nfc_id) as total_visits_per_year
 from cust inner join vis on cust.nfc_id = vis.nfc_id
+where room_id not like 'X%'
 group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
@@ -103,6 +106,7 @@ or (month(getdate()) - month(visit.entrance_time) = 1 and year(getdate()) = year
 or year(getdate()) - year(visit.entrance_time) = 1 and month(getdate()) + month(visit.entrance_time) = 13 and day(getdate()) + day(visit.entrance_time) <= 30)
 select top 3 vis.room_id, count(vis.nfc_id) as total_visits_per_month
 from cust inner join vis on cust.nfc_id = vis.nfc_id 
+where room_id not like 'X%'
 group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
@@ -121,6 +125,7 @@ where year(visit.entrance_time) = year(getdate()) or
 (year(getdate()) - year(visit.entrance_time) = 1 and month(entrance_time) - month(getdate()) >= 0))
 select top 3 vis.room_id, count(vis.nfc_id) as total_visits_per_year
 from cust inner join vis on cust.nfc_id = vis.nfc_id
+where room_id not like 'X%'
 group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
@@ -140,6 +145,7 @@ or (month(getdate()) - month(visit.entrance_time) = 1 and year(getdate()) = year
 or year(getdate()) - year(visit.entrance_time) = 1 and month(getdate()) + month(visit.entrance_time) = 13 and day(getdate()) + day(visit.entrance_time) <= 30)
 select top 3 vis.room_id, count(vis.nfc_id) as total_visits_per_month
 from cust inner join vis on cust.nfc_id = vis.nfc_id 
+where room_id not like 'X%'
 group by vis.room_id
 having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
