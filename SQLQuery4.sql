@@ -1,3 +1,5 @@
+/*QUERIES*/
+
 use hotel;
 
 /*χώροι που επισκέφθηκε άτομο με covid*/
@@ -20,9 +22,8 @@ or
 (entrance_time >= covid_exit and datediff(hour, covid_exit, entrance_time) <= 1)
 except
 select nfc_id
-from customer 
+from customer
 where nfc_id = '12301'
-
 
 
 /*πιο πολυσύχναστοι χώροι ανά ηλικιακή ομάδα*/
@@ -136,116 +137,6 @@ having count(vis.nfc_id) > 0
 order by count(vis.nfc_id) desc
 
 /*οι συχνότερα χρησιμοποιούμενες υπηρεσίες*/
-
-/*τον τελευταίο χρόνο*/
-/*20-40*/
-with cust as 
-(select nfc_id
-from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
-vis as 
-(select nfc_id, room_id
-from visit
-where datediff(year, visit.entrance_time, getdate()) <= 1)
-select top 3 service_id, count(vis.nfc_id) as visits_per_year
-from (cust inner join vis on cust.nfc_id = vis.nfc_id
-inner join provided on provided.room_id = vis.room_id)
-group by service_id
-having count(vis.nfc_id) > 0
-order by count(vis.nfc_id) desc
-
-
-/*τον τελευταίο μήνα*/
-/*20-40*/
-with cust as 
-(select nfc_id
-from customer
-where year(getdate()) - year(customer.date_of_birth) >= 20 and year(getdate()) - year(customer.date_of_birth) <= 40),
-vis as 
-(select nfc_id, room_id
-from visit
-where datediff(month, visit.entrance_time, getdate()) <= 1)
-select top 3 service_id, count(vis.nfc_id) as visits_per_month
-from (cust inner join vis on cust.nfc_id = vis.nfc_id
-inner join provided on provided.room_id = vis.room_id)
-group by service_id
-having count(vis.nfc_id) > 0
-order by count(vis.nfc_id) desc
-
-
-/*τον τελευταίο χρόνο*/
-/*41-60*/
-with cust as 
-(select nfc_id
-from customer
-where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
-vis as 
-(select nfc_id, room_id, entrance_time
-from visit
-where datediff(year, visit.entrance_time, getdate()) <= 1)
-select top 3 service_id, count(vis.nfc_id) as visits_per_year
-from (cust inner join vis on cust.nfc_id = vis.nfc_id
-inner join provided on provided.room_id = vis.room_id)
-group by service_id
-having count(vis.nfc_id) > 0
-order by count(vis.nfc_id) desc
-
-
-/*τον τελευταίο μήνα*/
-/*41-60*/
-with cust as 
-(select nfc_id
-from customer
-where year(getdate()) - year(customer.date_of_birth) >= 41 and year(getdate()) - year(customer.date_of_birth) <= 60),
-vis as 
-(select nfc_id, room_id, entrance_time
-from visit
-where datediff(month, visit.entrance_time, getdate()) <= 1)
-select top 3 service_id, count(vis.nfc_id) as visits_per_month
-from (cust inner join vis on cust.nfc_id = vis.nfc_id
-inner join provided on provided.room_id = vis.room_id)
-group by service_id
-having count(vis.nfc_id) > 0
-order by count(vis.nfc_id) desc
-
-
-/*τον τελευταίο χρόνο*/
-/*61+*/
-with cust as 
-(select nfc_id
-from customer
-where year(getdate()) - year(customer.date_of_birth) >= 61),
-vis as 
-(select nfc_id, room_id, entrance_time
-from visit
-where datediff(year, visit.entrance_time, getdate()) <= 1)
-select top 3 service_id, count(vis.nfc_id) as visits_per_year
-from (cust inner join vis on cust.nfc_id = vis.nfc_id
-inner join provided on provided.room_id = vis.room_id)
-group by service_id
-having count(vis.nfc_id) > 0
-order by count(vis.nfc_id) desc
-
-
-/*τον τελευταίο μήνα*/
-/*61+*/
-with cust as 
-(select nfc_id
-from customer
-where year(getdate()) - year(customer.date_of_birth) >= 61),
-vis as 
-(select nfc_id, room_id, entrance_time
-from visit
-where datediff(month, visit.entrance_time, getdate()) <= 1)
-select top 3 service_id, count(vis.nfc_id) as visits_per_month
-from (cust inner join vis on cust.nfc_id = vis.nfc_id
-inner join provided on provided.room_id = vis.room_id)
-group by service_id
-having count(vis.nfc_id) > 0
-order by count(vis.nfc_id) desc
-
-
-/*οι υπηρεσίες που χρησιμοποιούνται από τους περισσότερους πελάτες*/
 
 /*τον τελευταίο χρόνο*/
 /*20-40*/
